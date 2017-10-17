@@ -1,3 +1,7 @@
+/*
+	\Author:xxc08
+	\Brief:This is the code from the code reference
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
