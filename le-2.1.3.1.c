@@ -15,21 +15,21 @@ int search(int *buffer,int n,int target){
 		}
 		if(buffer[left]<=buffer[mid]){
 			if(buffer[mid]>target&&buffer[left]<=target){
-				right=mid;
+				right=mid-1;
 			}
 			else
 				left=mid;
 		}
-		if(buffer[right-1]>=buffer[mid]){
+		else{
 			if(buffer[mid]<target&&buffer[right-1]>=target){
-				left=mid;
+				left=mid+1;
 			}
 			else
 				right=mid;
 			
 		}		
 	}
-	return (right+left)/2;
+	return (right+left);
 
 }
 int main (int argc,char **argv){
