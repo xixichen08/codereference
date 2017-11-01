@@ -6,18 +6,13 @@
 int n,permutation_nr;
 int Numbers[101]={};
 int fac(int n){
-	
-	int nr=1;
-	while(n>1){
-		nr*=n;
-		n--;	
-	}
-	return nr;
+	if(n==1) return 1;	
+	return n*fac(n-1);
 }
 int cantor(int *B,int n){
 	int i,temp=0;
 	int nr=0;
-	for(i=1;i<=n;i++){
+	for(i=1;i<n;i++){
 		for(int j=i+1;j<=n;j++){
 			if(B[i]>B[j]) temp++;		
 		}
