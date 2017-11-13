@@ -5,7 +5,10 @@
 #define min(a,b) ((a)<(b)?(a):(b))
 #define STACK_SIZE 100
 #define STACK_INCREAMENT 10
-#define element int
+typedef struct stack_element{
+	int value;
+	int index;
+}element;
 int n,A[101]={};
 typedef struct node {
 	element *top;
@@ -20,9 +23,13 @@ void stackinit(stack *s){
 	}
 	s->top=s->base;
 	s->stacksize=STACK_SIZE;
+/*	for(int i=0;i<s->stacksize;i++){
+		
+	}*/
 	return ;
 }
-void push(stack *s,int value){
+void push(stack *s,int value,int index){
+	element *tmp;
 	if(s->top-s->base>=s->stacksize){
 		s->base=(element*)realloc(s->base,(s->stacksize+STACK_INCREAMENT)*sizeof(element));
 		if(NULL==s->base){
@@ -33,8 +40,10 @@ void push(stack *s,int value){
 		s->stacksize+=STACK_INCREAMENT;
 		
 	}
-	*s->top=value;
-	*s->top++;
+	tmp=s->top;
+	tmp->value=value;
+	tmp->index=index;
+	s->top++;
 	return ;
 }
 element* pop(stack *s){
@@ -67,6 +76,30 @@ element* top(stack *s){
 int area(stack *s,int *B,int n){
 	int i,j,res=0;
 	element* tmp;
+	int value=0;
+	push(s,0,-1);
+	for(i=0;i<=n;i++){
+		tmp=top(s);
+		if(i==n) value=-1;
+		else value=B[i];
+		if(NULL!=tmp){
+			if(value>=tmp->value){
+				push(s,value,i);
+			}
+			while(value<tmp->value){
+				res=max(res,(tmp->value)*(i-tmp->index));
+				tmp=top(s);
+				pop(s);
+				if(top(s)->index==-1) {
+					res=max(res,(tmp->value)*i);
+					break;
+				}
+			}
+			push(s,value,i);
+		}
+		else push(s,value,i);
+	}
+//	printf("The max is %d\n",res);
 	return res;
 
 }
