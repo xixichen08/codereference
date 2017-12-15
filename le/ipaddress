@@ -1,0 +1,6 @@
+# user name for aliyun :test_SIASUN
+# password for aliyun :siasun1727
+# ip address for machine 01: 101.132.174.239/172.19.213.252
+# ip address for machine 02: 106.14.164.21/172.19.213.251
+# when you need to use the ssh to login you should use the key mysiasun.pem
+# And write the following  instrumention : ssh -i /routeofkey root@101.132.174.239
